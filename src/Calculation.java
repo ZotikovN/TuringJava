@@ -11,6 +11,8 @@ public class Calculation {
     private String output;
 
 
+
+    
     Calculation(boolean start, String commands, String output){
         this.start = start;
         this.commands = commands;

@@ -33,6 +33,8 @@ public class Main {
 
     //Комманды ввода в консоль
 
+
+
     @Option(name = "-start", usage = "start")
     private boolean start = false;
 
