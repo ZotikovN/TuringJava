@@ -14,7 +14,7 @@ public class Main {
         new Main().launch(args);
     }
 
-    
+
     private void launch(String[] args) {
         CmdLineParser cmd = new CmdLineParser(this);
         try {
@@ -37,7 +37,7 @@ public class Main {
 
 
     @Option(name = "-start", usage = "start")
-    private boolean start = false;
+    private int start = 1;
 
     @Option(name = "-commands", usage = "commands")
     private String commands = "";

@@ -6,19 +6,21 @@ import java.util.Scanner;
 
 
 public class Calculation {
-    private boolean start;
+    private int start;
     private String commands;
     private String output;
 
 
 
-    Calculation(boolean start, String commands, String output){
+
+    Calculation(int start, String commands, String output){
         this.start = start;
         this.commands = commands;
         this.output = output;
     }
 
     void start(){
+        int state = start;
 
     }
 
