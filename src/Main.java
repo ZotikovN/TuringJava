@@ -14,6 +14,7 @@ public class Main {
         new Main().launch(args);
     }
 
+    
     private void launch(String[] args) {
         CmdLineParser cmd = new CmdLineParser(this);
         try {
