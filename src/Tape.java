@@ -13,6 +13,9 @@ public class Tape {
         }
     }
 
+    public int getState() {
+        return state;
+    }
 
     void goForward(boolean i){
         if (i) {
@@ -30,10 +33,5 @@ public class Tape {
 
     }
 
-    public int getState() {
-        return state;
-    }
-
-
-
+    
 }
