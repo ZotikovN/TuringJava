@@ -10,5 +10,11 @@ public class Head {
         this.value = value;
     }
 
+    public int getState() {
+        return state;
+    }
 
+    public char getValue() {
+        return value;
+    }
 }
