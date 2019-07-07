@@ -21,7 +21,7 @@ public class Calculation {
 
     void start(){
         int state = start;
-
+        //...
     }
 
 
