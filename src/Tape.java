@@ -17,6 +17,9 @@ public class Tape {
         return state;
     }
 
+
+    //каретка сдвигается вперед или назад
+
     void goForward(boolean i){
         if (i) {
             state++;
