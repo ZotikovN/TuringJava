@@ -35,13 +35,21 @@ public class Main {
     //Комманды ввода в консоль
 
 
-
+    //Ячейка, с которой процесс начинается
     @Option(name = "-start", usage = "start")
     private int start = 1;
 
+    //файл с командами
     @Option(name = "-commands", usage = "commands")
     private String commands = "";
 
+    //выходной файл
     @Option(name = "-output", usage = "output")
     private String output = "";
+
+
+    //вывод значений в указанный тектовый файл
+    void output (String outputFile) {
+        //...
+    }
 }
