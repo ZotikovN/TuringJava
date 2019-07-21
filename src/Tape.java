@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 //Класс ленты
 
 public class Tape {
-    private ArrayList<Character> charIn = new ArrayList<>();
+    private LinkedList<Character> charIn = new LinkedList<>();
     private int state;
 
     Tape (int start, String chars){
@@ -15,7 +16,7 @@ public class Tape {
 
 
 
-    public void setCharIn(ArrayList<Character> charIn) {
+    public void setCharIn(LinkedList<Character> charIn) {
         this.charIn = charIn;
     }
 
@@ -23,7 +24,7 @@ public class Tape {
         return state;
     }
 
-    public ArrayList<Character> getCharIn() {
+    public LinkedList<Character> getCharIn() {
         return charIn;
     }
     //каретка сдвигается вперед или назад

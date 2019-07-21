@@ -34,9 +34,6 @@ public class Main {
             System.out.println(e.getMessage());
             return;
         }
-//        if (output.isEmpty())
-//            throw new IllegalArgumentException("Нет выходного файла");
-
         String fileIn = fileInputReader(input);
         List<String> commIn = fileCommandReader(commands);
         try {
@@ -53,7 +50,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
     }
-    
+
 
 
 
@@ -73,9 +70,6 @@ public class Main {
     @Option(name = "-commands", usage = "commands", required = true)
     private String commands = "";
 
-    //выходной файл
-//    @Option(name = "-output", usage = "output")
-//    private String output = "";
 
 
     //Считывает входящий файл ленты
@@ -107,16 +101,6 @@ public class Main {
     }
 
 
-//    //Записывает ленту в выходной файл
-//    private void output (Calculation calc, String output) throws FileNotFoundException {
-//        Tape tape = calc.getLocalTape();
-//        File result = new File(output);
-//        PrintWriter printWriter = new PrintWriter(result);
-//        for (char ch : tape.getCharIn()){
-//            printWriter.print(ch);
-//        }
-//        printWriter.close();
-//    }
 
     private String stringOutput (Tape tape) {
         String result = tape.toString();

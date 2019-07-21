@@ -12,7 +12,7 @@ public class Tests {
 
     @Test
     public void zeroToOne() throws FileNotFoundException{
-        String expected = "111111____";
+        String expected = "111111 ";
         List<String> res = Arrays.asList("-input", "Tests/input.txt", "-start", "0", "-commands", "Tests/commands.txt");
         Main.main(res);
         assertEquals(expected, Main.result);
@@ -21,7 +21,7 @@ public class Tests {
 
     @Test
     public void zeroToOneOneToZero() throws FileNotFoundException{
-        String expected = "110111____";
+        String expected = "110111 ";
         List<String> res = Arrays.asList("-input", "Tests/input.txt", "-start", "0", "-commands", "Tests/commands1.txt");
         Main.main(res);
         assertEquals(expected, Main.result);
@@ -30,7 +30,7 @@ public class Tests {
 
     @Test
     public void addBin() throws FileNotFoundException{
-        String expected = "_10010_________";
+        String expected = " 10010         ";
         List<String> res = Arrays.asList("-input", "Tests/input1.txt", "-start", "10", "-commands", "Tests/commands2.txt");
         Main.main(res);
         assertEquals(expected, Main.result);

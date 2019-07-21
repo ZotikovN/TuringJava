@@ -69,6 +69,11 @@ public class Calculation {
                         else if(temp.getDirection()== '>'){
                             localTape.getCharIn().set(head, temp.getToChar());
                             head+=1;
+                            char inf = ' ';
+                            if (localTape.getCharIn().get(head-1) == localTape.getCharIn().getLast() ||
+                                    head-1 == localTape.getCharIn().indexOf(localTape.getCharIn().getLast())){
+                                localTape.getCharIn().add(inf);
+                            }
                             localTape.goForward(true);
                             processing(temp.getState() - '0', localTape.getCharIn().get(head));
 //                            System.out.println("2");
@@ -90,6 +95,11 @@ public class Calculation {
                         }
                         else if(temp.getDirection()== '>'){
                         head+=1;
+                        char inf = ' ';
+                        if (localTape.getCharIn().get(head-1) == localTape.getCharIn().getLast() ||
+                                head-1 == localTape.getCharIn().indexOf(localTape.getCharIn().getLast())){
+                            localTape.getCharIn().add(inf);
+                        }
                         localTape.goForward(true);
                         processing(temp.getState() - '0', localTape.getCharIn().get(head));
                         break;
@@ -106,15 +116,7 @@ public class Calculation {
         }
     }
 
-    //вывод значений в указанный тектовый файл
-    void output (String output) throws FileNotFoundException {
-        File result = new File(output);
-        PrintWriter printWriter = new PrintWriter(result);
-        for (char ch : localTape.getCharIn()){
-            printWriter.print(ch);
-        }
-        printWriter.close();
-    }
+
 
     public Tape getLocalTape() {
         return localTape;
