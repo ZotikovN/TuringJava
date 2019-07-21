@@ -3,8 +3,8 @@ import java.util.ArrayList;
 //Класс ленты
 
 public class Tape {
-    ArrayList<Character> charIn = new ArrayList<>();
-    int state;
+    private ArrayList<Character> charIn = new ArrayList<>();
+    private int state;
 
     Tape (int start, String chars){
         this.state = start;
@@ -13,11 +13,19 @@ public class Tape {
         }
     }
 
+
+
+    public void setCharIn(ArrayList<Character> charIn) {
+        this.charIn = charIn;
+    }
+
     public int getState() {
         return state;
     }
 
-
+    public ArrayList<Character> getCharIn() {
+        return charIn;
+    }
     //каретка сдвигается вперед или назад
 
     void goForward(boolean i){
@@ -35,6 +43,15 @@ public class Tape {
         }
 
     }
+
+    public String toString(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (char comm : charIn){
+            stringBuilder.append(comm);
+        }
+        return stringBuilder.toString();
+    }
+
 
 
 }

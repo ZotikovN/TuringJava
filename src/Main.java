@@ -10,46 +10,124 @@ import java.io.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static String result;
+
+    public static void main(List<String> args) throws FileNotFoundException {
         new Main().launch(args);
     }
 
 
-    private void launch(String[] args) {
+    private void launch(List<String> args) throws FileNotFoundException {
         CmdLineParser cmd = new CmdLineParser(this);
         try {
             cmd.parseArgument(args);
-        } catch (CmdLineException a) {
-            System.err.println(a.getMessage());
-            cmd.printUsage(System.err);
+        } catch (CmdLineException e) {
+            e.printStackTrace();
+            return;
         }
-        if (commands.isEmpty())
-            throw new IllegalArgumentException("Нет файла с коммандами");
-        if (output.isEmpty())
-            throw new IllegalArgumentException("Нет выходного файла");
+        try {
+            if (input.isEmpty())
+                throw new IllegalArgumentException("Нет файла с коммандами");
+            if (commands.isEmpty())
+                throw new IllegalArgumentException("Нет файла с коммандами");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+//        if (output.isEmpty())
+//            throw new IllegalArgumentException("Нет выходного файла");
 
-        Calculation main = new Calculation(start, commands, output);
-        main.start();
+        String fileIn = fileInputReader(input);
+        List<String> commIn = fileCommandReader(commands);
+        try {
+            Calculation main = new Calculation(start, fileIn, commIn);
+            Process proc = main.start();
+            if (proc == Process.STOP) {
+                System.out.println("Работа симмулятора завершена некорректно");
+            }
+            result = stringOutput(main.getLocalTape());
+            System.out.println("команды: "+commands+", лента: "+input);
+            System.out.println("Результат работы: " + result);
+        }
+        catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    //Комманды ввода в консоль
 
+
+
+
+
+
+
+    //Флаги
+
+
+    //Входная лента
+    @Option(name = "-input", usage = "input", required = true)
+    private String input = "";
 
     //Ячейка, с которой процесс начинается
     @Option(name = "-start", usage = "start")
-    private int start = 1;
+    private int start = 0;
 
     //файл с командами
-    @Option(name = "-commands", usage = "commands")
+    @Option(name = "-commands", usage = "commands", required = true)
     private String commands = "";
 
     //выходной файл
-    @Option(name = "-output", usage = "output")
-    private String output = "";
+//    @Option(name = "-output", usage = "output")
+//    private String output = "";
 
 
-    //вывод значений в указанный тектовый файл
-    void output (String outputFile) {
-        //...
+    //Считывает входящий файл ленты
+    private String fileInputReader(String path) throws FileNotFoundException{
+        File filePath = new File(path);
+        Scanner scanner = new Scanner(filePath);
+        StringBuilder f = new StringBuilder();
+        while (scanner.hasNextLine()){
+            f.append(scanner.nextLine());
+        }
+        String tape = f.toString();
+        return tape;
     }
+
+
+    //Считывает входящий файл команд
+    private List<String> fileCommandReader(String path) throws FileNotFoundException{
+        File filePath = new File(path);
+        Scanner scanner = new Scanner(filePath);
+        StringBuilder f = new StringBuilder();
+        List<String> board = new ArrayList<>();
+        while (scanner.hasNextLine()){
+            f.append(scanner.nextLine());
+            board.add(f.toString());
+            f = new StringBuilder();
+        }
+        scanner.close();
+        return board;
+    }
+
+
+//    //Записывает ленту в выходной файл
+//    private void output (Calculation calc, String output) throws FileNotFoundException {
+//        Tape tape = calc.getLocalTape();
+//        File result = new File(output);
+//        PrintWriter printWriter = new PrintWriter(result);
+//        for (char ch : tape.getCharIn()){
+//            printWriter.print(ch);
+//        }
+//        printWriter.close();
+//    }
+
+    private String stringOutput (Tape tape) {
+        String result = tape.toString();
+        return result;
+    }
+
+
+
+
+
 }
