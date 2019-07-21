@@ -28,4 +28,13 @@ public class Tests {
 
     }
 
+    @Test
+    public void addBin() throws FileNotFoundException{
+        String expected = "_10010_________";
+        List<String> res = Arrays.asList("-input", "Tests/input1.txt", "-start", "10", "-commands", "Tests/commands2.txt");
+        Main.main(res);
+        assertEquals(expected, Main.result);
+
+    }
+
 }

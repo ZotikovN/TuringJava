@@ -52,7 +52,7 @@ public class Calculation {
 //            System.out.println("direction "+temp.getDirection()+ ", state and char " + state + " " + charChange);
 //            System.out.println("Head "+head+ ": " +localTape.getCharIn().get(head));
             if (temp.getOwnState()==state && temp.getCharChange()== charChange){
-                if (temp.getDirection() == '#'){
+                if (temp.getState() == '#'){
                     process = Process.DONE;
                     break;
                 }
@@ -62,7 +62,7 @@ public class Calculation {
                             localTape.getCharIn().set(head, temp.getToChar());
                             head-=1;
                             localTape.goForward(false);
-                            processing(temp.getState(), localTape.getCharIn().get(head));
+                            processing(temp.getState() - '0', localTape.getCharIn().get(head));
 //                            System.out.println("1");
                             break;
                         }
@@ -70,13 +70,13 @@ public class Calculation {
                             localTape.getCharIn().set(head, temp.getToChar());
                             head+=1;
                             localTape.goForward(true);
-                            processing(temp.getState(), localTape.getCharIn().get(head));
+                            processing(temp.getState() - '0', localTape.getCharIn().get(head));
 //                            System.out.println("2");
                             break;
                         }
                         else if(temp.getDirection()== '='){
                             localTape.getCharIn().set(head, temp.getToChar());
-                            processing(temp.getState(), localTape.getCharIn().get(head));
+                            processing(temp.getState() - '0', localTape.getCharIn().get(head));
 //                            System.out.println("3");
                             break;
                         }
@@ -85,17 +85,17 @@ public class Calculation {
                         if(temp.getDirection()== '<'){
                         head-=1;
                         localTape.goForward(false);
-                        processing(temp.getState(), localTape.getCharIn().get(head));
+                        processing(temp.getState() - '0', localTape.getCharIn().get(head));
                         break;
                         }
                         else if(temp.getDirection()== '>'){
                         head+=1;
                         localTape.goForward(true);
-                        processing(temp.getState(), localTape.getCharIn().get(head));
+                        processing(temp.getState() - '0', localTape.getCharIn().get(head));
                         break;
                         }
                         else if(temp.getDirection()== '='){
-                        processing(temp.getState(), localTape.getCharIn().get(head));
+                        processing(temp.getState() - '0', localTape.getCharIn().get(head));
                         break;
                         }
                     }

@@ -10,7 +10,7 @@ public class Board {
         int ownState = 0;
         for (String row : board) {
             ownState += 1;
-            int state;
+            char state;
             char command;
             char direction;
             char charChange;
@@ -19,8 +19,8 @@ public class Board {
                 charChange = temp.charAt(0);
                 command = temp.charAt(1);
                 direction = temp.charAt(2);
-                state = temp.charAt(3) - '0';
-                if (!(direction == '>' || direction == '<' || direction == '=' || direction == '#')){
+                state = temp.charAt(3);
+                if (!(direction == '>' || direction == '<' || direction == '=')){
                     throw new IllegalArgumentException("неверный символ");
                 }
                 Command commandToAdd = new Command(ownState, charChange, state, command, direction);
@@ -38,11 +38,11 @@ public class Board {
     class Command{
         private int ownState;
         private char charChange;
-        private int state;
+        private char state;
         private char toChar;
         private char direction;
 
-        Command(int ownState, char charChange, int state, char toChar, char direction){
+        Command(int ownState, char charChange, char state, char toChar, char direction){
             this.ownState = ownState;
             this.charChange = charChange;
             this.state = state;
@@ -59,7 +59,7 @@ public class Board {
         }
 
 
-        int getState() {
+        char getState() {
             return state;
         }
 
