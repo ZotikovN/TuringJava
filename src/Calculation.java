@@ -15,6 +15,7 @@ public class Calculation {
     private Board board;
     private Process process;
     private int head;
+    private final static int maxTapeValue = 10000;
 
 
 
@@ -72,7 +73,11 @@ public class Calculation {
                             char inf = ' ';
                             if (localTape.getCharIn().get(head-1) == localTape.getCharIn().getLast() ||
                                     head-1 == localTape.getCharIn().indexOf(localTape.getCharIn().getLast())){
+                                if (localTape.getCharIn().get(head - 1) == maxTapeValue) {
+                                    throw new IndexOutOfBoundsException("Переполнение памяти");
+                                }
                                 localTape.getCharIn().add(inf);
+
                             }
                             localTape.goForward(true);
                             processing(temp.getState() - '0', localTape.getCharIn().get(head));
@@ -114,6 +119,16 @@ public class Calculation {
             }
 
         }
+    }
+
+
+    void output (String output) throws FileNotFoundException {
+        File result = new File(output);
+        PrintWriter printWriter = new PrintWriter(result);
+        for (char ch : localTape.getCharIn()){
+            printWriter.print(ch);
+        }
+        printWriter.close();
     }
 
 

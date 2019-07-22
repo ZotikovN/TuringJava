@@ -30,6 +30,8 @@ public class Main {
                 throw new IllegalArgumentException("Нет файла с коммандами");
             if (commands.isEmpty())
                 throw new IllegalArgumentException("Нет файла с коммандами");
+            if (output.isEmpty())
+            throw new IllegalArgumentException("Нет выходного файла");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return;
@@ -43,6 +45,7 @@ public class Main {
                 System.out.println("Работа симмулятора завершена некорректно");
             }
             result = stringOutput(main.getLocalTape());
+            main.output(output);
             System.out.println("команды: "+commands+", лента: "+input);
             System.out.println("Результат работы: " + result);
         }
@@ -69,6 +72,9 @@ public class Main {
     //файл с командами
     @Option(name = "-commands", usage = "commands", required = true)
     private String commands = "";
+
+    @Option(name = "-output", usage = "output", required = true)
+    private String output = "";
 
 
 

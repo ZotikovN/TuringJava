@@ -13,7 +13,8 @@ public class Tests {
     @Test
     public void zeroToOne() throws FileNotFoundException{
         String expected = "111111 ";
-        List<String> res = Arrays.asList("-input", "Tests/input.txt", "-start", "0", "-commands", "Tests/commands.txt");
+        List<String> res = Arrays.asList("-input", "Tests/input.txt", "-start", "0", "-commands", "Tests/commands.txt",
+                "-output", "Tests/output.txt");
         Main.main(res);
         assertEquals(expected, Main.result);
 
@@ -22,19 +23,19 @@ public class Tests {
     @Test
     public void zeroToOneOneToZero() throws FileNotFoundException{
         String expected = "110111 ";
-        List<String> res = Arrays.asList("-input", "Tests/input.txt", "-start", "0", "-commands", "Tests/commands1.txt");
+        List<String> res = Arrays.asList("-input", "Tests/input.txt", "-start", "0", "-commands", "Tests/commands1.txt",
+                "-output", "Tests/output1.txt");
         Main.main(res);
         assertEquals(expected, Main.result);
-
     }
 
     @Test
     public void addBin() throws FileNotFoundException{
         String expected = " 10010         ";
-        List<String> res = Arrays.asList("-input", "Tests/input1.txt", "-start", "10", "-commands", "Tests/commands2.txt");
+        List<String> res = Arrays.asList("-input", "Tests/input1.txt", "-start", "10", "-commands", "Tests/commands2.txt",
+                "-output", "Tests/output2.txt");
         Main.main(res);
         assertEquals(expected, Main.result);
-
     }
 
 }
